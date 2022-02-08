@@ -5,6 +5,7 @@ import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.Partie;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.tour.phases.Phase;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
 import java.util.stream.Collectors;

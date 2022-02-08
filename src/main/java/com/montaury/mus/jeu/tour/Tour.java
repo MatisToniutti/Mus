@@ -42,7 +42,7 @@ public class Tour {
     Iterator<Phase> phases = phasesJouablesPar(opposants).iterator();
     do {
       var resultatPhase = phases.next().jouer(evenements, opposants);
-      resultatPhase.vainqueur().ifPresent(joueur -> score.scorer(joueur, resultatPhase.pointsImmediats));
+      resultatPhase.vainqueur().ifPresent(joueur -> score.scorer(joueur.equipe, resultatPhase.pointsImmediats));
       resultats.ajouter(resultatPhase);
     } while (phases.hasNext() && score.vainqueur().isEmpty());
     resultats.attribuerPointsRestants(score);
@@ -68,7 +68,7 @@ public class Tour {
       while (resultatPhase.hasNext() && score.vainqueur().isEmpty()) {
         var resultat = resultatPhase.next();
         resultat.vainqueur().ifPresent(vainqueur ->
-          score.scorer(vainqueur, resultat.pointsFinDuTour));
+          score.scorer(vainqueur.equipe, resultat.pointsFinDuTour));
       }
     }
   }
