@@ -6,17 +6,17 @@ import java.util.Arrays;
 
 public class Fixtures {
   public static Joueur unJoueur() {
-    return new Joueur("Ordinateur", new FausseInterfaceJoueur());
+    return new Joueur("Ordinateur", new FausseInterfaceJoueur(), new Equipe("EquipeOrdinateur"));
   }
 
   public static Joueur unJoueurAvec(Main main) {
-    Joueur joueur = new Joueur("Ordinateur", new FausseInterfaceJoueur());
+    Joueur joueur = new Joueur("Ordinateur", new FausseInterfaceJoueur(),new Equipe("EquipeOrdinateur"));
     joueur.donnerCartes(main.cartes());
     return joueur;
   }
 
   public static Joueur unJoueurFaisantChoix(Choix... choix) {
-    return new Joueur("Ordinateur", new FausseInterfaceJoueur(choix));
+    return new Joueur("Ordinateur", new FausseInterfaceJoueur(choix),new Equipe("EquipeOrdinateur"));
   }
 
   public static Main main(Carte... cartes) {
