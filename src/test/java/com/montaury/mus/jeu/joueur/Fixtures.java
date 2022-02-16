@@ -18,6 +18,9 @@ public class Fixtures {
   public static Joueur unJoueurFaisantChoix(Choix... choix) {
     return new Joueur("Ordinateur", new FausseInterfaceJoueur(choix),new Equipe("EquipeOrdinateur"));
   }
+  public static Joueur unJoueurFaisantChoix( Equipe equipe,Choix... choix) {
+    return new Joueur("Ordinateur", new FausseInterfaceJoueur(choix),equipe);
+  }
 
   public static Main main(Carte... cartes) {
     return new Main(Arrays.asList(cartes));

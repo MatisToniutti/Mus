@@ -18,12 +18,21 @@ public class Opposants {
   }
 
   public void tourner() {
-    var tmp = joueurEsku;
-    var tmp2 = joueurNeutre1;
-    joueurEsku = joueurZaku;
-    joueurNeutre1=tmp;
-    joueurZaku = joueurNeutre2;
-    joueurNeutre2=tmp2;
+    var tmp = joueurNeutre1;
+    var tmp2 = joueurNeutre2;
+    var tmp3 = joueurZaku;
+    var tmp4 = joueurEsku;
+    joueurZaku=tmp4;
+    joueurEsku=tmp;
+    joueurNeutre1=tmp2;
+    joueurNeutre2=tmp3;
+
+
+
+    /*joueurZaku= joueurEsku;
+    joueurEsku=tmp;
+    joueurNeutre2 = joueurZaku;
+    joueurNeutre1=tmp2;*/
   }
 
   public Joueur joueurEsku() {

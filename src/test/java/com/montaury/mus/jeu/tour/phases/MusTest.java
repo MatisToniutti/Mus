@@ -92,16 +92,18 @@ class MusTest {
   @Test
   void devrait_defausser_les_cartes_a_jeter_si_les_joueurs_vont_mus() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
-    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
-    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
-    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurNeutre2.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurNeutre1.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+
     when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
-
-
+    when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.QUATRE_COUPE));
+    when(interfaceJoueurNeutre1.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    when(interfaceJoueurNeutre2.cartesAJeter()).thenReturn(List.of(Carte.TROIS_COUPE));
 
     mus.jouer(opposants);
 
-    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE);
+    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE,Carte.TROIS_COUPE,Carte.QUATRE_COUPE);
   }
 
   @Test

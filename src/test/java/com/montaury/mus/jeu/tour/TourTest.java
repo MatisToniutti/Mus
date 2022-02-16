@@ -5,6 +5,7 @@ import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Gehiago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Idoki;
@@ -24,8 +25,12 @@ import static org.mockito.Mockito.mock;
 
 class TourTest {
 
+  Equipe equipe1 = new Equipe("equipe1");
+  Equipe equipe2 = new Equipe("equipe2");
+
   @BeforeEach
   void setUp() {
+
     evenementsDeJeu = mock(Evenements.class);
     tour = new Tour(evenementsDeJeu, paquetEntierCroissant(), new Defausse());
   }
@@ -112,14 +117,14 @@ class TourTest {
 
   @Test
   void devrait_privilegier_le_joueur_esku_si_les_mains_sont_identiques() {
-    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
-    var joueurZaku = unJoueurFaisantChoix(new Idoki());
-    var joueurNeutre1 = unJoueurFaisantChoix(new Idoki());
-    var joueurNeutre2 = unJoueurFaisantChoix(new Idoki());
+    var joueurEsku = unJoueurFaisantChoix(equipe1,new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
+    var joueurZaku = unJoueurFaisantChoix(equipe2,new Idoki());
+    var joueurNeutre1 = unJoueurFaisantChoix(equipe1,new Idoki());
+    var joueurNeutre2 = unJoueurFaisantChoix(equipe2,new Idoki());
     var opposants = new Opposants(joueurEsku,joueurNeutre1,joueurNeutre2, joueurZaku);
     var score = new Manche.Score(opposants);
 
-    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
+    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE, Carte.AS_EPEE, Carte.DEUX_EPEE, Carte.TROIS_EPEE, Carte.QUATRE_EPEE, Carte.AS_PIECE, Carte.DEUX_PIECE, Carte.TROIS_PIECE, Carte.QUATRE_PIECE), new Defausse());
 
     tour.jouer(opposants, score);
 
@@ -130,14 +135,14 @@ class TourTest {
 
   @Test
   void devrait_attribuer_les_bonus_au_joueur_ayant_la_meilleure_main_pour_chaque_phase() {
-    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Paso(), new Paso());
-    var joueurZaku = unJoueurFaisantChoix(new Paso(), new Paso());
-    var joueurNeutre1 = unJoueurFaisantChoix(new Paso(), new Paso());
-    var joueurNeutre2 = unJoueurFaisantChoix(new Paso(), new Paso());
+    var joueurEsku = unJoueurFaisantChoix(equipe1,new Mintza(), new Paso(), new Paso(),new Paso(),new Paso());
+    var joueurZaku = unJoueurFaisantChoix(equipe2,new Paso());
+    var joueurNeutre1 = unJoueurFaisantChoix(equipe2,new Paso());
+    var joueurNeutre2 = unJoueurFaisantChoix(equipe1,new Paso());
     var opposants = new Opposants(joueurEsku,joueurNeutre1,joueurNeutre2, joueurZaku);
     var score = new Manche.Score(opposants);
 
-    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.ROI_BATON, Carte.ROI_COUPE, Carte.VALET_BATON, Carte.AS_EPEE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE, Carte.CINQ_COUPE), new Defausse());
+    Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.ROI_BATON, Carte.ROI_COUPE, Carte.VALET_BATON, Carte.AS_EPEE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE, Carte.CINQ_COUPE,Carte.ROI_EPEE, Carte.ROI_PIECE, Carte.VALET_PIECE, Carte.AS_PIECE, Carte.DEUX_PIECE, Carte.TROIS_PIECE, Carte.QUATRE_PIECE, Carte.CINQ_PIECE), new Defausse());
 
     tour.jouer(opposants, score);
 

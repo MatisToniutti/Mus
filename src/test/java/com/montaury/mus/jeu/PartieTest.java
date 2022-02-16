@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Kanta;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Mintza;
@@ -14,7 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 class PartieTest {
-
+  Equipe equipe1 = new Equipe("equipe1");
+  Equipe equipe2 = new Equipe("equipe2");
   @BeforeEach
   void setUp() {
     partie = new Partie(mock(Evenements.class));
@@ -23,10 +25,15 @@ class PartieTest {
   @Test
   void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
     var opposants = new Opposants(
-      unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-      unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta()),
+            /*unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
             unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta()),
-            unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
+            unJoueurFaisantChoix(),
+            unJoueurFaisantChoix()*/
+
+            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(),new Kanta()),
+            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Mus(), new Paso(), new Kanta(),new Kanta())
 
     );
 
@@ -38,3 +45,4 @@ class PartieTest {
 
   private Partie partie;
 }
+
