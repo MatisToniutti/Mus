@@ -111,8 +111,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku.equipe, 4);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku.equipe, 16);
+    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku.equipe, 8);
+    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku.equipe, 28);
   }
 
   @Test

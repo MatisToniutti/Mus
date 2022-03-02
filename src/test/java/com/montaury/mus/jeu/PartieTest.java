@@ -25,15 +25,19 @@ class PartieTest {
   @Test
   void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
     var opposants = new Opposants(
-            /*unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta()),
-            unJoueurFaisantChoix(),
-            unJoueurFaisantChoix()*/
+            /*unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(),, new Mintza(), new Hordago(), new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(),, new Mus(), new Paso(), new Kanta(),, new Kanta()),
+            */
 
-            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(),new Kanta()),
-            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(equipe2,new Mus(), new Paso(), new Kanta(),new Kanta())
+     //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),new Mintza(), new Hordago()),
+      //      unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(),new Kanta()),
+     //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
+     //       unJoueurFaisantChoix(equipe2,new Mus(), new Paso(), new Kanta(),new Kanta())
+
+            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),  new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(), new Kanta()),
+            unJoueurFaisantChoix(equipe1, new Mintza(), new Hordago(), new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta())
 
     );
 
