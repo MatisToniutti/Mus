@@ -28,16 +28,19 @@ class PartieTest {
             /*unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(),, new Mintza(), new Hordago(), new Mintza(), new Hordago()),
             unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(),, new Mus(), new Paso(), new Kanta(),, new Kanta()),
             */
+             /*unJoueurFaisantChoix(  ),
+            unJoueurFaisantChoix(  , new Mus(), new Paso(), new Kanta(),, new Kanta()),
+            */
 
      //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),new Mintza(), new Hordago()),
       //      unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(),new Kanta()),
      //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
      //       unJoueurFaisantChoix(equipe2,new Mus(), new Paso(), new Kanta(),new Kanta())
 
-            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),  new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(), new Kanta()),
-            unJoueurFaisantChoix(equipe1, new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta())
+            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Kanta(),new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(),new Kanta() ),
+            unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(equipe2,new Kanta(),new Kanta(),new Mintza(), new Hordago())
 
     );
 
