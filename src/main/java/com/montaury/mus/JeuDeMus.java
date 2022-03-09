@@ -11,6 +11,8 @@ public class JeuDeMus {
   public static void main(String[] args) {
     System.out.print("Entrez votre nom: ");
     var nomJoueur = new Scanner(System.in).next();
+    System.out.print("Entrez le nombre de joueur(s) par équipe (1 ou 2): ");
+    var nbJoueur = new Scanner(System.in).next();
     System.out.print("Entrez le nom de l'équipe 1: ");
     var nomEquipe1 = new Scanner(System.in).next();
     System.out.print("Entrez le nom de l'équipe 2: ");
@@ -20,8 +22,12 @@ public class JeuDeMus {
     var joueurHumain = Joueur.humain(nomJoueur,equipe1);
 
     var partie = new Partie(new AffichageEvenements(joueurHumain));
-    var resultat = partie.jouer(new Opposants(joueurHumain, Joueur.ordinateur(equipe2), Joueur.ordinateur(equipe1), Joueur.ordinateur(equipe2)));
-
+    Partie.Resultat resultat;
+    if(nbJoueur.equals("2")) {
+      resultat = partie.jouer(new Opposants(joueurHumain, Joueur.ordinateur(equipe2), Joueur.ordinateur(equipe1), Joueur.ordinateur(equipe2)));
+    }else{
+      resultat = partie.jouer(new Opposants(joueurHumain, Joueur.ordinateur(equipe2)));
+    }
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }
 }

@@ -16,23 +16,26 @@ public class Opposants {
     this.joueurNeutre2 = joueurNeutre2;
     this.joueurZaku = joueurZaku;
   }
+  public Opposants(Joueur joueurEsku,Joueur joueurZaku) {
+    this.joueurEsku = joueurEsku;
+    this.joueurZaku = joueurZaku;
+  }
 
   public void tourner() {
-    var tmp = joueurNeutre1;
-    var tmp2 = joueurNeutre2;
-    var tmp3 = joueurZaku;
-    var tmp4 = joueurEsku;
-    joueurZaku=tmp4;
-    joueurEsku=tmp;
-    joueurNeutre1=tmp2;
-    joueurNeutre2=tmp3;
-
-
-
-    /*joueurZaku= joueurEsku;
-    joueurEsku=tmp;
-    joueurNeutre2 = joueurZaku;
-    joueurNeutre1=tmp2;*/
+    if(joueurNeutre1!=null) {
+      var tmp = joueurNeutre1;
+      var tmp2 = joueurNeutre2;
+      var tmp3 = joueurZaku;
+      var tmp4 = joueurEsku;
+      joueurZaku = tmp4;
+      joueurEsku = tmp;
+      joueurNeutre1 = tmp2;
+      joueurNeutre2 = tmp3;
+    }else{
+      var tmp = joueurEsku;
+      joueurEsku = joueurZaku;
+      joueurZaku = tmp;
+    }
   }
 
   public Joueur joueurEsku() {
@@ -43,14 +46,11 @@ public class Opposants {
     return joueurZaku;
   }
 
-  public Joueur joueurNeutre1(){
-    return joueurNeutre1;
-  }
-  public Joueur joueurNeutre2(){
-    return joueurNeutre2;
-  }
-
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku,joueurNeutre1,joueurNeutre2, joueurZaku);
+    if(joueurNeutre1!=null) {
+      return List.of(joueurEsku, joueurNeutre1, joueurNeutre2, joueurZaku);
+    }else{
+      return List.of(joueurEsku,joueurZaku);
+    }
   }
 }
