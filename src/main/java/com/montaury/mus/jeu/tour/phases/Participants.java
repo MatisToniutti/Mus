@@ -46,15 +46,6 @@ public class Participants {
 
     }
  }
- /*public Joueur adversaireDe(Joueur joueurParlant) {
-    Joueur adversaire;
-    if(joueurParlant == premier()){ adversaire=dansLOrdre.get(1); }
-    else if(joueurParlant == deuxieme()){ adversaire=dansLOrdre.get(2); }
-    else if(joueurParlant == troisieme()){ adversaire=dansLOrdre.get(3); }
-    else{ adversaire=dansLOrdre.get(0); }
-    return  adversaire;
-
-  }*/
   public Iterable<Joueur> dansLOrdre() {
     return dansLOrdre;
   }

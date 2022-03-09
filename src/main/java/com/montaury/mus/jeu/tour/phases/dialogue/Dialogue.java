@@ -36,6 +36,28 @@ public class Dialogue {
     return new Recapitulatif(choix);
   }
 
+  public final Recapitulatif deroulerSuiteTira(Participants participants){
+
+    var deroulement = new Deroulement(participants);
+    var choix = new ArrayList<ChoixJoueur>();
+
+      //on saute le joueur d'apres
+      deroulement.prochainJoueur();
+      //Puit on passe a l'allié de la personne qui a dit tira
+      var joueurParlant = deroulement.prochainJoueur();
+
+      var choixJoueur = joueurParlant.interfaceJoueur.faireChoixParmi(deroulement.choixPossibles());
+      affichage.choixFait(joueurParlant, choixJoueur);
+      choix.add(new ChoixJoueur(choixJoueur, joueurParlant));
+      deroulement = choixJoueur.influerSur(deroulement);
+
+
+    return new Recapitulatif(choix);
+
+
+
+  }
+
   public static class ChoixJoueur {
     public final Choix choix;
     public final Joueur joueur;

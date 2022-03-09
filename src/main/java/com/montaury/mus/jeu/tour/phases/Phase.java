@@ -1,11 +1,14 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.Manche;
+import com.montaury.mus.jeu.Partie;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -35,14 +38,31 @@ public abstract class Phase {
       return Phase.Resultat.termine(premier, 0, pointsBonus(premier));
     }
     var resultat = new Dialogue(affichage).derouler(participants);
-    return conclure(resultat, participants);
+    return conclure(resultat, participants,opposants.getNbJoueur());
   }
 
-  private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants) {
-    if (dialogue.terminePar(TIRA)) {
+  private Resultat conclure(Dialogue.Recapitulatif dialogue, Participants participants,int nbJoueur) {
+    if (nbJoueur!=4 && dialogue.terminePar(TIRA)) {
       var joueurEmportantLaMise = dialogue.dernierJoueurAyantMise();
       return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
     }
+    if (nbJoueur==4 && dialogue.terminePar(TIRA)){
+/*
+      Evenements affichage = new Evenements() ;
+      affichage.nouvellePhase(this);
+      new Dialogue(affichage).deroulerSuiteTira(participants);
+
+     /* if reponse = TIRA {conclure(TIRA,participants,2}
+
+      derouler(suite);*/
+
+
+
+      var joueurEmportantLaMise = dialogue.dernierJoueurAyantMise();
+      return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
+
+    }
+
     var vainqueur = meilleurParmi(participants);
     if (dialogue.terminePar(KANTA)) {
       return Phase.Resultat.termine(vainqueur, Manche.Score.POINTS_POUR_TERMINER_MANCHE, 0);

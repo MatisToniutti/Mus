@@ -1,6 +1,6 @@
 package com.montaury.mus;
 
-import com.montaury.mus.jeu.Partie;
+import  com.montaury.mus.jeu.Partie;
 import com.montaury.mus.console.AffichageEvenements;
 import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
@@ -24,9 +24,13 @@ public class JeuDeMus {
     var partie = new Partie(new AffichageEvenements(joueurHumain));
     Partie.Resultat resultat;
     if(nbJoueur.equals("2")) {
-      resultat = partie.jouer(new Opposants(joueurHumain, Joueur.ordinateur(equipe2), Joueur.ordinateur(equipe1), Joueur.ordinateur(equipe2)));
-    }else{
-      resultat = partie.jouer(new Opposants(joueurHumain, Joueur.ordinateur(equipe2)));
+      Opposants op = new Opposants(joueurHumain, Joueur.ordinateur(equipe2), Joueur.ordinateur(equipe1), Joueur.ordinateur(equipe2));
+      op.setNbJoueur(4);
+      resultat = partie.jouer(op);
+    }else {
+      Opposants op = new Opposants(joueurHumain, Joueur.ordinateur(equipe2));
+      op.setNbJoueur(2);
+      resultat = partie.jouer(op);
     }
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }

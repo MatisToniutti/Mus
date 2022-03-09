@@ -18,6 +18,7 @@ public class Joueur {
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
   public Equipe equipe;
+  public boolean estCouche;
 
   public Joueur(String nom, InterfaceJoueur interfaceJoueur,Equipe equipe) {
     this.nom = nom;

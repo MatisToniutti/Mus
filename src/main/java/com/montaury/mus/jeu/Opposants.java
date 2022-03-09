@@ -9,7 +9,14 @@ public class Opposants {
   private Joueur joueurNeutre1;
   private Joueur joueurNeutre2;
   private Joueur joueurZaku;
+  private int nbjoueur=4;
 
+  public void setNbJoueur(int a){
+    this.nbjoueur=a;
+  }
+  public int getNbJoueur(){
+    return this.nbjoueur;
+  }
   public Opposants(Joueur joueurEsku, Joueur joueurNeutre1, Joueur joueurNeutre2, Joueur joueurZaku) {
     this.joueurEsku = joueurEsku;
     this.joueurNeutre1 = joueurNeutre1;
@@ -22,7 +29,7 @@ public class Opposants {
   }
 
   public void tourner() {
-    if(joueurNeutre1!=null) {
+    if(this.getNbJoueur()==4) {
       var tmp = joueurNeutre1;
       var tmp2 = joueurNeutre2;
       var tmp3 = joueurZaku;
@@ -47,10 +54,11 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    if(joueurNeutre1!=null) {
+    if(this.getNbJoueur()==4) {
       return List.of(joueurEsku, joueurNeutre1, joueurNeutre2, joueurZaku);
     }else{
-      return List.of(joueurEsku,joueurZaku);
+      return List.of(joueurEsku, joueurZaku);
+
     }
   }
 }
