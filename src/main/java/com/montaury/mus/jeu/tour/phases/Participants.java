@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Participants {
-  private final List<Joueur> dansLOrdre;
+  public final List<Joueur> dansLOrdre;
 
   public Participants(List<Joueur> dansLOrdre) {
     this.dansLOrdre = dansLOrdre;
@@ -46,6 +46,7 @@ public class Participants {
 
     }
  }
+
   public Iterable<Joueur> dansLOrdre() {
     return dansLOrdre;
   }

@@ -38,4 +38,5 @@ public class Joueur {
     main.ajouter(cartes);
     interfaceJoueur.nouvelleMain(main);
   }
+
 }

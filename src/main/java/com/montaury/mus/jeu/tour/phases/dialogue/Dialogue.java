@@ -120,7 +120,7 @@ public class Dialogue {
 
   public static class Recapitulatif {
     private final int pointsEngages;
-    private final List<ChoixJoueur> mises;
+    public final List<ChoixJoueur> mises;
     private final Choix dernierChoix;
 
     public Recapitulatif(List<ChoixJoueur> choix) {

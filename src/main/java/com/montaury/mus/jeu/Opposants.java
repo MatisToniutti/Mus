@@ -44,6 +44,11 @@ public class Opposants {
       joueurZaku = tmp;
     }
   }
+  public Joueur getCoequiper(){
+    var joueurs = dansLOrdre();
+    var coequipier = joueurs.get(3);
+    return coequipier;
+  }
 
   public Joueur joueurEsku() {
     return joueurEsku;

@@ -1,20 +1,20 @@
 package com.montaury.mus.jeu.tour.phases;
-
 import com.montaury.mus.jeu.Manche;
-import com.montaury.mus.jeu.Partie;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Main;
 import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.tour.phases.dialogue.Dialogue;
-import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
-
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
+import java.util.ArrayList;
+import java.util.Collections;
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.KANTA;
-import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.PASO;
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.TIRA;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.GEHIAGO;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.HORDAGO;
+import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.PASO;
 
 public abstract class Phase {
   private final String nom;
@@ -47,6 +47,10 @@ public abstract class Phase {
       return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
     }
     if (nbJoueur==4 && dialogue.terminePar(TIRA)){
+      var joueurs = participants.dansLOrdre;
+      var coequipier = joueurs.get(2);
+      var choix = new ArrayList<TypeChoix>(Collections.singleton(TIRA));
+      coequipier.interfaceJoueur.faireChoixParmi(choix);
 /*
       Evenements affichage = new Evenements() ;
       affichage.nouvellePhase(this);
