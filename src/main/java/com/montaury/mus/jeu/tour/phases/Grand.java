@@ -12,9 +12,9 @@ public class Grand extends Phase {
   }
 
   @Override
-  protected boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku) {
-    var cartesJoueurEsku = mainJoueurEsku.cartesDuPlusGrandAuPlusPetit();
-    var cartesJoueurZaku = mainJoueurZaku.cartesDuPlusGrandAuPlusPetit();
+  protected boolean mainEskuEstMeilleure(Main mainJoueur1, Main mainJoueur2) {
+    var cartesJoueurEsku = mainJoueur1.cartesDuPlusGrandAuPlusPetit();
+    var cartesJoueurZaku = mainJoueur2.cartesDuPlusGrandAuPlusPetit();
 
     for (var i = 0; i < Main.TAILLE; i++) {
       ValeurCarte.Comparaison compare = cartesJoueurEsku.get(i).comparerAvec(cartesJoueurZaku.get(i));

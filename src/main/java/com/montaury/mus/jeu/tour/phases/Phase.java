@@ -93,8 +93,8 @@ public abstract class Phase {
     return meilleur;
   }
 
-  private Joueur meilleurEntre(Joueur joueurEsku, Joueur joueurZaku) {
-    return mainEskuEstMeilleure(joueurEsku.main(), joueurZaku.main()) ? joueurEsku : joueurZaku;
+  private Joueur meilleurEntre(Joueur joueur1, Joueur joueur2) {
+    return mainEskuEstMeilleure(joueur1.main(), joueur2.main()) ? joueur1 : joueur2;
   }
 
   protected abstract boolean mainEskuEstMeilleure(Main mainJoueurEsku, Main mainJoueurZaku);

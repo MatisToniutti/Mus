@@ -10,42 +10,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 class GrandTest {
 
   @Test
-  void devrait_faire_gagner_le_joueur_esku_s_il_a_la_plus_grande_carte() {
-    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.CAVALIER_BATON, Carte.SIX_COUPE);
-    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.SEPT_BATON, Carte.AS_PIECE);
+  void devrait_faire_gagner_le_joueur1_s_il_a_la_plus_grande_carte() {
+    Main mainJoueur1 = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.CAVALIER_BATON, Carte.SIX_COUPE);
+    Main mainJoueur2 = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.SEPT_BATON, Carte.AS_PIECE);
 
-    boolean mainEskuEstMeilleure = grand.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
+    boolean main1EstMeilleure = grand.mainEskuEstMeilleure(mainJoueur1, mainJoueur2);
 
-    assertThat(mainEskuEstMeilleure).isTrue();
+    assertThat(main1EstMeilleure).isTrue();
   }
   @Test
-  void devrait_faire_gagner_le_joueur_zaku_s_il_a_la_plus_grande_carte() {
-    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE);
-    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_PIECE);
+  void devrait_faire_gagner_le_joueur2_s_il_a_la_plus_grande_carte() {
+    Main mainJoueur1 = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.SEPT_BATON, Carte.SIX_COUPE);
+    Main mainJoueur2 = main(Carte.DEUX_BATON, Carte.TROIS_PIECE, Carte.CAVALIER_BATON, Carte.AS_PIECE);
 
-    boolean mainEskuEstMeilleure = grand.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
+    boolean main1EstMeilleure = grand.mainEskuEstMeilleure(mainJoueur1, mainJoueur2);
 
-    assertThat(mainEskuEstMeilleure).isFalse();
+    assertThat(main1EstMeilleure).isFalse();
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_qui_a_la_seconde_plus_grande_carte_si_la_premiere_est_egale() {
-    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
-    Main mainJoueurZaku = main(Carte.DEUX_BATON, Carte.VALET_PIECE, Carte.QUATRE_BATON, Carte.SEPT_PIECE);
+    Main mainJoueur1 = main(Carte.AS_BATON, Carte.CINQ_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
+    Main mainJoueur2 = main(Carte.DEUX_BATON, Carte.VALET_PIECE, Carte.QUATRE_BATON, Carte.SEPT_PIECE);
 
-    boolean mainEskuEstMeilleure = grand.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
+    boolean main1EstMeilleure = grand.mainEskuEstMeilleure(mainJoueur1, mainJoueur2);
 
-    assertThat(mainEskuEstMeilleure).isFalse();
+    assertThat(main1EstMeilleure).isFalse();
   }
 
   @Test
-  void devrait_faire_gagner_le_joueur_esku_si_les_deux_mains_sont_egales() {
-    Main mainJoueurEsku = main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
-    Main mainJoueurZaku = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE);
+  void devrait_faire_gagner_le_joueur1_si_les_deux_mains_sont_egales() {
+    Main mainJoueur1 = main(Carte.AS_BATON, Carte.QUATRE_PIECE, Carte.VALET_BATON, Carte.SIX_COUPE);
+    Main mainJoueur2 = main(Carte.VALET_PIECE, Carte.SIX_PIECE, Carte.QUATRE_BATON, Carte.AS_PIECE);
 
-    boolean mainEskuEstMeilleure = grand.mainEskuEstMeilleure(mainJoueurEsku, mainJoueurZaku);
+    boolean main1EstMeilleure = grand.mainEskuEstMeilleure(mainJoueur1, mainJoueur2);
 
-    assertThat(mainEskuEstMeilleure).isTrue();
+    assertThat(main1EstMeilleure).isTrue();
   }
 
   private final Grand grand = new Grand();

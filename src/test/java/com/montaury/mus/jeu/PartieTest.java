@@ -23,25 +23,25 @@ class PartieTest {
   }
 
   @Test
-  void devrait_faire_gagner_le_premier_joueur_a_3_manches() {
+  void devrait_faire_gagner_le_premier_joueur_a_3_manches_un_contre_un() {
     var opposants = new Opposants(
-            /*unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(),, new Mintza(), new Hordago(), new Mintza(), new Hordago()),
-            unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(),, new Mus(), new Paso(), new Kanta(),, new Kanta()),
-            */
-             /*unJoueurFaisantChoix(  ),
-            unJoueurFaisantChoix(  , new Mus(), new Paso(), new Kanta(),, new Kanta()),
-            */
+            unJoueurFaisantChoix(new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago(), new Mintza(), new Hordago()),
+            unJoueurFaisantChoix(new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta(), new Mus(), new Paso(), new Kanta(), new Kanta())
+    );
+    opposants.setNbJoueur(2);
+    Partie.Resultat resultat = partie.jouer(opposants);
 
-     //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago(),new Mintza(), new Hordago()),
-      //      unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(), new Kanta(),new Kanta()),
-     //       unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
-     //       unJoueurFaisantChoix(equipe2,new Mus(), new Paso(), new Kanta(),new Kanta())
+    assertThat(resultat.vainqueur()).isNotNull();
+    assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
+  }
 
+  @Test
+  void devrait_faire_gagner_le_premier_joueur_a_3_manches_deux_contre_deux() {
+    var opposants = new Opposants(
             unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Kanta(),new Mintza(), new Hordago()),
             unJoueurFaisantChoix(equipe2,new Kanta(),new Mus(), new Paso(),new Kanta() ),
             unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Mintza(), new Hordago()),
             unJoueurFaisantChoix(equipe2,new Kanta(),new Kanta(),new Mintza(), new Hordago())
-
     );
 
     Partie.Resultat resultat = partie.jouer(opposants);
@@ -49,6 +49,7 @@ class PartieTest {
     assertThat(resultat.vainqueur()).isNotNull();
     assertThat(resultat.score().resultatManches()).hasSizeGreaterThanOrEqualTo(3);
   }
+
 
   private Partie partie;
 }

@@ -42,7 +42,17 @@ class MusTest {
   }
 
   @Test
-  void devrait_distribuer_quatre_cartes_a_chaque_joueur() {
+  void devrait_distribuer_quatre_cartes_a_chaque_joueur_un_contre_un() {
+    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new Mintza());
+
+    mus.jouer(opposants);
+
+    assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_COUPE, Carte.AS_EPEE, Carte.AS_PIECE);
+    assertThat(joueurNeutre1.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_COUPE, Carte.DEUX_EPEE, Carte.DEUX_PIECE);
+  }
+
+  @Test
+  void devrait_distribuer_quatre_cartes_a_chaque_joueur_deux_contre_deux() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new Mintza());
 
     mus.jouer(opposants);
@@ -63,7 +73,17 @@ class MusTest {
   }
 
   @Test
-  void devrait_se_terminer_si_le_joueur_zaku_veut_sortir() {
+  void devrait_se_terminer_si_le_joueur_zaku_veut_sortir_un_contre_un() {
+    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new Mintza());
+    opposants.setNbJoueur(2);
+    mus.jouer(opposants);
+
+    verify(interfaceJoueurEsku, times(0)).cartesAJeter();
+  }
+
+  @Test
+  void devrait_se_terminer_si_le_joueur_zaku_veut_sortir_deux_contre_deux() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
     when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new Mintza());
     when(interfaceJoueurNeutre1.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
@@ -75,8 +95,20 @@ class MusTest {
     verify(interfaceJoueurEsku, times(0)).cartesAJeter();
   }
 
+
   @Test
-  void devrait_demander_les_cartes_a_jeter_aux_joueurs_s_ils_vont_mus() {
+  void devrait_demander_les_cartes_a_jeter_aux_joueurs_s_ils_vont_mus_un_contre_un() {
+    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
+    when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    opposants.setNbJoueur(2);
+    mus.jouer(opposants);
+
+    verify(interfaceJoueurEsku, times(1)).cartesAJeter();
+    verify(interfaceJoueurZaku, times(1)).cartesAJeter();
+  }
+
+  @Test
+  void devrait_demander_les_cartes_a_jeter_aux_joueurs_s_ils_vont_mus_deux_contre_deux() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
     when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
     when(interfaceJoueurNeutre1.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
@@ -90,7 +122,19 @@ class MusTest {
   }
 
   @Test
-  void devrait_defausser_les_cartes_a_jeter_si_les_joueurs_vont_mus() {
+  void devrait_defausser_les_cartes_a_jeter_si_les_joueurs_vont_mus_un_contre_un() {
+    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
+    when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
+    when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    opposants.setNbJoueur(2);
+    mus.jouer(opposants);
+
+    assertThat(defausse.reprendreCartes()).containsExactly(Carte.AS_COUPE, Carte.DEUX_COUPE);
+  }
+
+  @Test
+  void devrait_defausser_les_cartes_a_jeter_si_les_joueurs_vont_mus_deux_contre_deux() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
     when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
     when(interfaceJoueurNeutre2.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
@@ -107,7 +151,20 @@ class MusTest {
   }
 
   @Test
-  void devrait_distribuer_des_cartes_pour_remplacer_les_cartes_jetees_si_les_joueurs_vont_mus() {
+  void devrait_distribuer_des_cartes_pour_remplacer_les_cartes_jetees_si_les_joueurs_vont_mus_un_contre_un() {
+    when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
+    when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
+    when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());
+    when(interfaceJoueurZaku.cartesAJeter()).thenReturn(List.of(Carte.DEUX_COUPE));
+    opposants.setNbJoueur(2);
+    mus.jouer(opposants);
+
+    assertThat(joueurEsku.main().cartes()).containsExactly(Carte.AS_BATON, Carte.AS_EPEE, Carte.AS_PIECE, Carte.TROIS_BATON);
+    assertThat(joueurZaku.main().cartes()).containsExactly(Carte.DEUX_BATON, Carte.DEUX_EPEE, Carte.DEUX_PIECE, Carte.TROIS_COUPE);
+  }
+
+  @Test
+  void devrait_distribuer_des_cartes_pour_remplacer_les_cartes_jetees_si_les_joueurs_vont_mus_deux_contre_deux() {
     when(interfaceJoueurEsku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus(), new Mintza());
     when(interfaceJoueurEsku.cartesAJeter()).thenReturn(List.of(Carte.AS_COUPE));
     when(interfaceJoueurZaku.faireChoixParmi(anyList())).thenReturn(new com.montaury.mus.jeu.tour.phases.dialogue.choix.Mus());

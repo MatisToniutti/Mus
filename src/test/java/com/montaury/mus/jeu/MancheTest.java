@@ -21,13 +21,24 @@ class MancheTest {
   }
 
   @Test
+  void devrait_terminer_la_manche_si_hordago_au_grand_un_contre_un() {
+    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
+    var joueurZaku = unJoueurFaisantChoix(new Kanta());
+    var opposants = new Opposants(joueurEsku, joueurZaku);
+    opposants.setNbJoueur(2);
+    var resultat = manche.jouer(opposants);
 
-  void devrait_terminer_la_manche_si_hordago_au_grand() {
+    assertThat(resultat.vainqueur()).isNotNull();
+    assertThat(resultat.pointsVaincu()).isZero();
+  }
 
-    var joueurEsku = unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago(),new Kanta());
-    var joueurZaku = unJoueurFaisantChoix(equipe2,new Kanta(),new Mintza(), new Hordago());
-    var joueurNeutre1 = unJoueurFaisantChoix(equipe1,new Kanta(),new Mintza(), new Hordago());
-    var joueurNeutre2 = unJoueurFaisantChoix(equipe2,new Kanta(),new Mintza(), new Hordago());
+  @Test
+  void devrait_terminer_la_manche_si_hordago_au_grand_deux_contre_deux() {
+
+    var joueurEsku = unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago());
+    var joueurZaku = unJoueurFaisantChoix(equipe2,new Paso());
+    var joueurNeutre1 = unJoueurFaisantChoix(equipe1,new Kanta());
+    var joueurNeutre2 = unJoueurFaisantChoix(equipe2,new Paso());
 
     var resultat = manche.jouer(new Opposants(joueurEsku,joueurNeutre1,joueurNeutre2,joueurZaku));
 
@@ -49,7 +60,18 @@ class MancheTest {
   }
 
   @Test
-  void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
+  void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour_un_contre_un() {
+    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
+    var joueurZaku = unJoueurFaisantChoix(new Kanta());
+    var opposants = new Opposants(joueurEsku, joueurZaku);
+    opposants.setNbJoueur(2);
+    manche.jouer(opposants);
+
+    assertThat(opposants.dansLOrdre()).containsExactly(joueurZaku, joueurEsku);
+  }
+
+  @Test
+  void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour_deux_contre_deux() {
     var joueurEsku = unJoueurFaisantChoix(equipe1,new Mintza(), new Hordago());
     var joueurZaku = unJoueurFaisantChoix(equipe2);
     var joueurNeutre1 = unJoueurFaisantChoix(equipe1,new Kanta());

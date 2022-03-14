@@ -35,7 +35,19 @@ class DialogueTest {
   }
 
   @Test
-  void est_termine_si_le_dernier_choix_est_tira() {
+  void engage_un_point_si_les_4_participants_sont_paso() {
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso());
+    Joueur joueur2 = unJoueurFaisantChoix(new Paso());
+    Joueur joueur3 = unJoueurFaisantChoix(new Paso());
+    Joueur joueur4 = unJoueurFaisantChoix(new Paso());
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2,joueur3,joueur4)));
+
+    assertThat(recapitulatif.pointsEngages()).isOne();
+  }
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_tira_en_deux_contre_deux() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
     Joueur joueur3 = unJoueurFaisantChoix(new Paso());
@@ -47,7 +59,17 @@ class DialogueTest {
   }
 
   @Test
-  void est_termine_si_le_dernier_choix_est_idoki() {
+  void est_termine_si_le_dernier_choix_est_tira_en_un_contre_un() {
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
+    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isOne();
+  }
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_idoki_deux_contre_deux() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
     Joueur joueur2 = unJoueurFaisantChoix(new Paso());
     Joueur joueur3 = unJoueurFaisantChoix(new Paso());
@@ -59,7 +81,17 @@ class DialogueTest {
   }
 
   @Test
-  void est_termine_si_le_dernier_choix_est_kanta() {
+  void est_termine_si_le_dernier_choix_est_idoki_un_contre_un() {
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
+    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(2);
+  }
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_kanta_deux_contre_deux() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
     Joueur joueur2 = unJoueurFaisantChoix(new Paso());
     Joueur joueur3 = unJoueurFaisantChoix(new Paso());
@@ -69,6 +101,17 @@ class DialogueTest {
 
     assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
   }
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_kanta_un_contre_un() {
+    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
+    Joueur joueur2 = unJoueurFaisantChoix(new Hordago());
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
+  }
+
   private Dialogue dialogue;
 
 }
