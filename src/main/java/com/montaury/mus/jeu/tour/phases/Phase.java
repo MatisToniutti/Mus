@@ -47,21 +47,6 @@ public abstract class Phase {
       return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
     }
     if (nbJoueur==4 && dialogue.terminePar(TIRA)){
-      var joueurs = participants.dansLOrdre;
-      var coequipier = joueurs.get(2);
-      var choix = new ArrayList<TypeChoix>(Collections.singleton(TIRA));
-      coequipier.interfaceJoueur.faireChoixParmi(choix);
-/*
-      Evenements affichage = new Evenements() ;
-      affichage.nouvellePhase(this);
-      new Dialogue(affichage).deroulerSuiteTira(participants);
-
-     /* if reponse = TIRA {conclure(TIRA,participants,2}
-
-      derouler(suite);*/
-
-
-
       var joueurEmportantLaMise = dialogue.dernierJoueurAyantMise();
       return Phase.Resultat.termine(joueurEmportantLaMise, dialogue.pointsEngages(), pointsBonus(joueurEmportantLaMise));
 

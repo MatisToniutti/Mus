@@ -114,7 +114,9 @@ public class Dialogue {
     }
 
     public Deroulement retirerJoueurParlant() {
-      return new Deroulement(participants.retirer(joueurParlant), joueursDevantParler, prochainsChoixPossibles);
+      Participants participant = participants.retirer(joueurParlant);
+
+      return new Deroulement(participant, participant.dansLOrdre().iterator(), prochainsChoixPossibles);
     }
   }
 
