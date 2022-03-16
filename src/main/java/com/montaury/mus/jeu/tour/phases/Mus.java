@@ -6,6 +6,8 @@ import com.montaury.mus.jeu.carte.Paquet;
 import com.montaury.mus.jeu.evenements.Evenements;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.MINTZA;
@@ -42,6 +44,11 @@ public class Mus {
   }
 
   private boolean veulentAllerMus(List<Joueur> joueurs) {
+    /*List<Joueur> listeJoueurs = new ArrayList<Joueur>(joueurs);
+    var joueur2 = listeJoueurs.get(2);
+    var joueur1 = listeJoueurs.get(1);
+    listeJoueurs.set(2,joueur1);
+    listeJoueurs.set(1,joueur2);*/
     for (Joueur joueur : joueurs) {
       var choix = joueur.interfaceJoueur.faireChoixParmi(CHOIX_POSSIBLES_JOUEUR);
       evenements.choixFait(joueur, choix);
